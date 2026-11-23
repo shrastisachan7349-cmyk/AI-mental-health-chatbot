@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MindMate — Your wellness space</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <header class="topbar">
+        <a class="brand" href="/"> <span class="brand-icon">✳</span> MindMate</a>
+        <span class="privacy"><span class="privacy-dot"></span> A private space for you</span>
+    </header>
+
+    <main class="page">
+        <aside class="sidebar">
+            <p class="eyebrow">YOUR WELLNESS SPACE</p>
+            <h1>Take a moment<br>for yourself.</h1>
+            <p class="intro">Check in with how you feel, then take things one step at a time.</p>
+
+            <section class="card mood-card">
+                <h2>How are you feeling?</h2>
+                <p class="subtext">Choose the closest match today.</p>
+                <label class="sr-only" for="mood">Select your mood</label>
+                <select id="mood">
+                    <option>Happy</option>
+                    <option>Calm</option>
+                    <option>Stressed</option>
+                    <option>Sad</option>
+                </select>
+                <button type="button" class="mood-log-button" id="logMoodButton">Log today’s mood</button>
+                <p id="moodLogStatus" class="mood-log-status" aria-live="polite"></p>
+                <div class="mood-trend">
+                    <div class="mood-trend-heading">
+                        <h3>Last 7 days</h3>
+                        <span>Private to this browser</span>
+                    </div>
+                    <div id="moodEmpty" class="mood-empty">Log a mood to start your trend.</div>
+                    <svg
+                        id="moodChart"
+                        class="mood-chart"
+                        viewBox="0 0 320 170"
+                        role="img"
+                        aria-label="Mood trend for the last seven days"
+                        hidden
+                    ></svg>
+                </div>
+            </section>
+
+            <section class="breathing-card">
+                <div class="breathing-icon">☁</div>
+                <p class="eyebrow">A GENTLE PAUSE</p>
+                <h2>Make room to breathe</h2>
+                <p>Inhale slowly, then let your breath out a little longer.</p>
+                <button type="button" class="link-button" id="breathingButton">
+                    Start a breathing pause <span>↗</span>
+                </button>
+                <p id="breathingStatus" class="breathing-status" aria-live="polite"></p>
+            </section>
+        </aside>
+
+        <section class="chat-card" aria-label="MindMate chat">
+            <div class="chat-header">
+                <div class="bot-avatar">✳</div>
+                <div>
+                    <h2>MindMate check-in</h2>
+                    <p><span class="online-dot"></span> Here to listen</p>
+                </div>
+                <button type="button" class="clear-button" id="clearButton">Clear chat</button>
+            </div>
+
+            <div class="notice">
+                <span>ⓘ</span>
+                <p>This is a student demo, not professional or emergency care.</p>
+            </div>
+
+            <div id="chat" class="messages" aria-live="polite" aria-label="Conversation">
+                <div class="message bot">
+                    <p>Hello! I’m glad you’re here. How are you feeling today?</p>
+                    <time>Just now</time>
+                </div>
+            </div>
+
+            <div class="suggestions" id="suggestions">
+                <button type="button">I feel stressed</button>
+                <button type="button">I feel low</button>
+                <button type="button">Help me reflect</button>
+            </div>
+
+            <form id="chatForm" class="composer">
+                <label class="sr-only" for="message">Your message</label>
+                <input
+                    id="message"
+                    type="text"
+                    placeholder="Share what’s on your mind…"
+                    maxlength="2000"
+                    required
+                >
+                <button id="sendButton" type="submit" aria-label="Send message">↑</button>
+            </form>
+            <p id="error" class="error" aria-live="polite"></p>
+            <p class="chat-footnote">If you may be in immediate danger, contact your local emergency service.</p>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='script.js') }}"></script>
+</body>
+</html>
